@@ -5,8 +5,8 @@ import (
 	"errors"
 	"reflect"
 
-	. "github.com/mlabouardy/dialogflow-go-client/models"
 	uuid "github.com/satori/go.uuid"
+	. "github.com/sdwkn/dialogflow-go-client/models"
 )
 
 type DialogFlowClient struct {
@@ -44,7 +44,8 @@ func NewDialogFlowClient(options Options) (error, *DialogFlowClient) {
 
 	client.sessionID = options.SessionID
 	if client.sessionID == "" {
-		client.sessionID = uuid.NewV4().String()
+		u, err := uuid.NewV4()
+		client.sessionID = u.String()
 	}
 
 	return nil, client
